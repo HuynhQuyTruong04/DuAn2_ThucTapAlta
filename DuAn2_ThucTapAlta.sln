@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34723.18
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DuAn2_ThucTapAlta", "DuAn2_ThucTapAlta\DuAn2_ThucTapAlta.csproj", "{DAE0B88F-9F63-4234-B649-651D68FEFFA6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DAE0B88F-9F63-4234-B649-651D68FEFFA6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DAE0B88F-9F63-4234-B649-651D68FEFFA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DAE0B88F-9F63-4234-B649-651D68FEFFA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DAE0B88F-9F63-4234-B649-651D68FEFFA6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3CDC0EE7-778D-40AF-B62D-7AD7D104E7BE}
+	EndGlobalSection
+EndGlobal
