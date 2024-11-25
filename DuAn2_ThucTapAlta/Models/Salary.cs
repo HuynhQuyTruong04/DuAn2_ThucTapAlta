@@ -9,6 +9,7 @@
         public string Note { get; set; }
         public DateTime CreateDate { get; set; }
         public DateTime UpdateDate { get; set; }
+        public bool IsActive { get; set; } = true;
 
         public int TeacherId { get; set; }
         public Teacher Teacher { get; set; }

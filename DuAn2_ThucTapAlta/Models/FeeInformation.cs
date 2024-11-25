@@ -7,6 +7,7 @@
         public float FeeLevel { get; set; }
         public float Discount { get; set; }
         public string Note { get; set; }
+        public bool IsActive { get; set; } = true;
 
         public int StudentId { get; set; }
         public int ClassId { get; set; }

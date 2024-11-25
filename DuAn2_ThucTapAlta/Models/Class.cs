@@ -9,6 +9,7 @@
         public float TuitionFee { get; set; }
         public string Image { get; set; }
         public int AcademicYear { get; set; }
+        public bool IsActive { get; set; } = true;
 
         public int TeacherId { get; set; }
         public Teacher Teacher { get; set; }
@@ -16,5 +17,6 @@
         public ICollection<Subject> Subjects { get; set; }
         public ICollection<FeeInformation> FeeInformations { get; set; }
         public ICollection<TimeTable> TimeTables { get; set; }
+        public ICollection<Grade> Grades { get; set; }
     }
 }

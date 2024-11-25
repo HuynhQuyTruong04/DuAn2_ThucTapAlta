@@ -15,10 +15,12 @@ namespace DuAn2_ThucTapAlta.Models
         public string SubjectSpecialization { get; set; }
         public DateTime CreateDate { get; set; }
         public DateTime UpdateDate { get; set; }
+        public bool IsActive { get; set; } = true;
 
         public int UserId { get; set; }
         public User User { get; set; }
         public ICollection<TimeTable> TimeTables { get; set; }
         public ICollection<Salary> Salaries { get; set; }
+        public ICollection<Class> Classes { get; set; }
     }
 }

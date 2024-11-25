@@ -11,13 +11,14 @@
         public string Email { get; set; }
         public string Address { get; set; }
         public string Parents { get; set; }
-        public string LoginCode { get; set; }
         public DateTime CreateDate { get; set; }
         public DateTime UpdateDate { get; set; }
+        public bool IsActive { get; set; } = true;
 
         public int UserId { get; set; }
         public User User { get; set; }
         public ICollection<Enrollment> Enrollments { get; set; }
         public ICollection<FeeInformation> FeeInformations { get; set; }
+        public ICollection<Grade> Grades { get; set; }
     }
 }

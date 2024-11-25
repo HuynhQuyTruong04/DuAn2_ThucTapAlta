@@ -5,6 +5,7 @@
         public int Id { get; set; }
         public float Score { get; set; }
         public string GradeType { get; set; }
+        public bool IsActive { get; set; } = true;
 
         public int StudentId { get; set; }
         public int ClassId { get; set; }
