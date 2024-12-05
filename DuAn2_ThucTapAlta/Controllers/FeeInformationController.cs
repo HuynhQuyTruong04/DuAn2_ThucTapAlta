@@ -1,6 +1,7 @@
 ﻿using DuAn2_ThucTapAlta.DTO.FeeInformation;
 using DuAn2_ThucTapAlta.Mappers;
 using DuAn2_ThucTapAlta.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,6 +19,7 @@ namespace DuAn2_ThucTapAlta.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize(Roles = "Admin,Teacher, Manager, User, Student")]
         public async Task<IActionResult> GetFeeInformationById(int id)
         {
             if (!ModelState.IsValid)
@@ -36,6 +38,7 @@ namespace DuAn2_ThucTapAlta.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin,Teacher, Manager, User, Student")]
         public async Task<IActionResult> GetAllFeeInformations()
         {
             if (!ModelState.IsValid)
@@ -51,6 +54,7 @@ namespace DuAn2_ThucTapAlta.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin, Manager")]
         public async Task<IActionResult> CreateFeeInformation(CreateFeeInformationDTO feeinformationDto)
         {
             if (!ModelState.IsValid)
@@ -71,6 +75,7 @@ namespace DuAn2_ThucTapAlta.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize(Roles = "Admin, Manager")]
         public async Task<IActionResult> UpdateFeeInformation(int id, UpdateFeeInformationDTO updateDto)
         {
             if (!ModelState.IsValid)
@@ -89,6 +94,7 @@ namespace DuAn2_ThucTapAlta.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin, Manager")]
         public async Task<IActionResult> DeleteFeeInformation(int id)
         {
             var result = await _feeInformationService.DeactivateFeeInformationAsync(id);
@@ -102,6 +108,7 @@ namespace DuAn2_ThucTapAlta.Controllers
         }
 
         [HttpPut("{id}/activate")]
+        [Authorize(Roles = "Admin, Manager")]
         public async Task<IActionResult> ActivateFeeInformation(int id)
         {
             var result = await _feeInformationService.ActivateFeeInformationAsync(id);
@@ -115,6 +122,7 @@ namespace DuAn2_ThucTapAlta.Controllers
         }
 
         [HttpGet("inactive")]
+        [Authorize(Roles = "Admin, Manager")]
         public async Task<IActionResult> GetInactiveFeeInformations()
         {
             var inactiveFeeInformations = await _feeInformationService.GetInactiveFeeInformationsAsync();

@@ -19,7 +19,7 @@ namespace DuAn2_ThucTapAlta.Controllers
         }
 
         [HttpGet("{id}")]
-        [Authorize(Roles = "Admin,Teacher,Manager")]
+        [Authorize(Roles = "Admin,Manager")]
         public async Task<IActionResult> GetUserById(int id)
         {
             if (!ModelState.IsValid)
@@ -38,7 +38,7 @@ namespace DuAn2_ThucTapAlta.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "Admin,Teacher,Manager")]
+        [Authorize(Roles = "Admin, Manager")]
         public async Task<IActionResult> GetAllUsers()
         {
             if (!ModelState.IsValid)

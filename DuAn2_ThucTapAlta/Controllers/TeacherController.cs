@@ -1,6 +1,7 @@
 ﻿using DuAn2_ThucTapAlta.DTO.Teacher;
 using DuAn2_ThucTapAlta.Mappers;
 using DuAn2_ThucTapAlta.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,6 +19,7 @@ namespace DuAn2_ThucTapAlta.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize(Roles = "Admin, Manager")]
         public async Task<IActionResult> GetTeacherById(int id)
         {
             if (!ModelState.IsValid)
@@ -36,6 +38,7 @@ namespace DuAn2_ThucTapAlta.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin, Manager")]
         public async Task<IActionResult> GetAllTeachers()
         {
             if (!ModelState.IsValid)
@@ -51,6 +54,7 @@ namespace DuAn2_ThucTapAlta.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin, Manager")]
         public async Task<IActionResult> CreateTeacher(CreateTeacherDTO teacherDto)
         {
             if (!ModelState.IsValid)
@@ -71,6 +75,7 @@ namespace DuAn2_ThucTapAlta.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize(Roles = "Admin, Manager")]
         public async Task<IActionResult> UpdateTeacher(int id, UpdateTeacherDTO updateDto)
         {
             if (!ModelState.IsValid)
@@ -82,13 +87,14 @@ namespace DuAn2_ThucTapAlta.Controllers
 
             if (teacherModel == null)
             {
-                return NotFound("Chuyến bay không tồn tại.");
+                return NotFound("");
             }
 
             return Ok(teacherModel.ToTeacherDTO());
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin, Manager")]
         public async Task<IActionResult> DeleteTeacher(int id)
         {
             var result = await _teacherService.DeactivateTeacherAsync(id);
@@ -102,6 +108,7 @@ namespace DuAn2_ThucTapAlta.Controllers
         }
 
         [HttpPut("{id}/activate")]
+        [Authorize(Roles = "Admin, Manager")]
         public async Task<IActionResult> ActivateTeacher(int id)
         {
             var result = await _teacherService.ActivateTeacherAsync(id);
@@ -115,6 +122,7 @@ namespace DuAn2_ThucTapAlta.Controllers
         }
 
         [HttpGet("inactive")]
+        [Authorize(Roles = "Admin, Manager")]
         public async Task<IActionResult> GetInactiveTeachers()
         {
             var inactiveTeachers = await _teacherService.GetInactiveTeachersAsync();

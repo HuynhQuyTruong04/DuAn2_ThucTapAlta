@@ -1,6 +1,7 @@
 ﻿using DuAn2_ThucTapAlta.DTO.Grade;
 using DuAn2_ThucTapAlta.Mappers;
 using DuAn2_ThucTapAlta.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,6 +19,7 @@ namespace DuAn2_ThucTapAlta.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize(Roles = "Admin,Teacher, Manager")]
         public async Task<IActionResult> GetGradeById(int id)
         {
             if (!ModelState.IsValid)
@@ -36,6 +38,7 @@ namespace DuAn2_ThucTapAlta.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin,Teacher, Manager")]
         public async Task<IActionResult> GetAllGrades()
         {
             if (!ModelState.IsValid)
@@ -51,6 +54,7 @@ namespace DuAn2_ThucTapAlta.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin,Teacher, Manager")]
         public async Task<IActionResult> CreateGrade(CreateGradeDTO gradeDto)
         {
             if (!ModelState.IsValid)
@@ -71,6 +75,7 @@ namespace DuAn2_ThucTapAlta.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize(Roles = "Admin,Teacher, Manager")]
         public async Task<IActionResult> UpdateGrade(int id, UpdateGradeDTO updateDto)
         {
             if (!ModelState.IsValid)
@@ -89,6 +94,7 @@ namespace DuAn2_ThucTapAlta.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin,Teacher, Manager")]
         public async Task<IActionResult> DeleteGrade(int id)
         {
             var result = await _gradeService.DeactivateGradeAsync(id);
@@ -102,6 +108,7 @@ namespace DuAn2_ThucTapAlta.Controllers
         }
 
         [HttpPut("{id}/activate")]
+        [Authorize(Roles = "Admin,Teacher, Manager")]
         public async Task<IActionResult> ActivateGrade(int id)
         {
             var result = await _gradeService.ActivateGradeAsync(id);
@@ -115,6 +122,7 @@ namespace DuAn2_ThucTapAlta.Controllers
         }
 
         [HttpGet("inactive")]
+        [Authorize(Roles = "Admin,Teacher, Manager")]
         public async Task<IActionResult> GetInactiveGrades()
         {
             var inactiveGrades = await _gradeService.GetInactiveGradesAsync();

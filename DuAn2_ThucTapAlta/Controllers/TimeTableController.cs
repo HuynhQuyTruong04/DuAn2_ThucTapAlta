@@ -1,6 +1,7 @@
 ﻿using DuAn2_ThucTapAlta.DTO.Timetable;
 using DuAn2_ThucTapAlta.Mappers;
 using DuAn2_ThucTapAlta.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,6 +19,7 @@ namespace DuAn2_ThucTapAlta.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize(Roles = "Admin,Teacher, Manager, Student")]
         public async Task<IActionResult> GetTimeTableById(int id)
         {
             if (!ModelState.IsValid)
@@ -36,6 +38,7 @@ namespace DuAn2_ThucTapAlta.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin,Teacher, Manager, Student")]
         public async Task<IActionResult> GetAllTimeTables()
         {
             if (!ModelState.IsValid)
@@ -51,7 +54,8 @@ namespace DuAn2_ThucTapAlta.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateClass(CreateTimeTableDTO timetableDto)
+        [Authorize(Roles = "Admin, Manager")]
+        public async Task<IActionResult> CreateTimeTable(CreateTimeTableDTO timetableDto)
         {
             if (!ModelState.IsValid)
             {
@@ -71,6 +75,7 @@ namespace DuAn2_ThucTapAlta.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize(Roles = "Admin, Manager")]
         public async Task<IActionResult> UpdateTimeTable(int id, UpdateTimeTableDTO updateDto)
         {
             if (!ModelState.IsValid)
@@ -89,6 +94,7 @@ namespace DuAn2_ThucTapAlta.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin, Manager")]
         public async Task<IActionResult> DeleteTimeTable(int id)
         {
             var result = await _timeTableService.DeactivateTimeTableAsync(id);
@@ -102,6 +108,7 @@ namespace DuAn2_ThucTapAlta.Controllers
         }
 
         [HttpPut("{id}/activate")]
+        [Authorize(Roles = "Admin, Manager")]
         public async Task<IActionResult> ActivateTimeTable(int id)
         {
             var result = await _timeTableService.ActivateTimeTableAsync(id);
@@ -115,6 +122,7 @@ namespace DuAn2_ThucTapAlta.Controllers
         }
 
         [HttpGet("inactive")]
+        [Authorize(Roles = "Admin, Manager")]
         public async Task<IActionResult> GetInactiveTimeTables()
         {
             var inactiveTimetables = await _timeTableService.GetInactiveTimeTablesAsync();

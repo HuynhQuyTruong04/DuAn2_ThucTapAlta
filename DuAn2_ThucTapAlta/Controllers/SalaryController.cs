@@ -1,6 +1,7 @@
 ﻿using DuAn2_ThucTapAlta.DTO.Salary;
 using DuAn2_ThucTapAlta.Mappers;
 using DuAn2_ThucTapAlta.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,6 +19,7 @@ namespace DuAn2_ThucTapAlta.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize(Roles = "Admin, Manager")]
         public async Task<IActionResult> GetSalaryById(int id)
         {
             if (!ModelState.IsValid)
@@ -36,6 +38,7 @@ namespace DuAn2_ThucTapAlta.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin, Manager")]
         public async Task<IActionResult> GetAllSalaries()
         {
             if (!ModelState.IsValid)
@@ -51,6 +54,7 @@ namespace DuAn2_ThucTapAlta.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin, Manager")]
         public async Task<IActionResult> CreateSalary(CreateSalaryDTO salaryDto)
         {
             if (!ModelState.IsValid)
@@ -71,6 +75,7 @@ namespace DuAn2_ThucTapAlta.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize(Roles = "Admin, Manager")]
         public async Task<IActionResult> UpdateSalary(int id, UpdateSalaryDTO updateDto)
         {
             if (!ModelState.IsValid)
@@ -89,6 +94,7 @@ namespace DuAn2_ThucTapAlta.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin, Manager")]
         public async Task<IActionResult> DeleteSalary(int id)
         {
             var result = await _salaryService.DeactivateSalaryAsync(id);
@@ -102,6 +108,7 @@ namespace DuAn2_ThucTapAlta.Controllers
         }
 
         [HttpPut("{id}/activate")]
+        [Authorize(Roles = "Admin, Manager")]
         public async Task<IActionResult> ActivateSalary(int id)
         {
             var result = await _salaryService.ActivateSalaryAsync(id);
@@ -115,6 +122,7 @@ namespace DuAn2_ThucTapAlta.Controllers
         }
 
         [HttpGet("inactive")]
+        [Authorize(Roles = "Admin, Manager")]
         public async Task<IActionResult> GetInactiveSalries()
         {
             var inactiveSalaries = await _salaryService.GetInactiveSalariesAsync();

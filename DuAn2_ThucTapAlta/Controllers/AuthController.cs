@@ -97,7 +97,7 @@ namespace DuAn2_ThucTapAlta.Controllers
             {
                 Email = userRegisterDto.Email,
                 Password = userRegisterDto.Password,
-                RoleId = userRegisterDto.RoleId,
+                RoleId = 6,
                 CreateDate = userRegisterDto.CreateDate,
                 UpdateDate = userRegisterDto.UpdateDate
             };
